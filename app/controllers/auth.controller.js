@@ -1,3 +1,5 @@
+var jwt = require("jsonwebtoken");
+
 var User = require("../models/auth.model.js");
 
 /// login controller ///
@@ -27,8 +29,17 @@ exports.login = function (req, res) {
         });
       } else {
         // check data not null
+        console.log("data", data);
         if (data) {
-          res.send(data);
+          var token = jwt.sign(
+            { username: data.username },
+            "qwertyuiopasdfghjklzxcvbnm123456"
+          );
+          res.send({ token: token });
+        } else {
+          res.status(500).send({
+            message: "Could not find this user ",
+          });
         }
       }
     }
