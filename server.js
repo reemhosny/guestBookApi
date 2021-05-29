@@ -7,8 +7,6 @@ var bodyParser = require("body-parser");
 // create express app
 var app = express();
 
-var router = express.Router();
-
 // allow cross origin
 app.use(function (req, res, next) {
   // shoud be changed to specsific ip server ///
@@ -20,27 +18,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-/// midleware to check jwt // matching
-const authenticateJWT = (req, res, next) => {
-  const authHeader = req.headers.jwt;
-  console.log("jwt", authHeader);
-
-  if (authHeader) {
-    jwt.verify(authHeader, "qwertyuiopasdfghjklzxcvbnm123456", (err, user) => {
-      if (err) {
-        console.log("error", err);
-        return res.sendStatus(403);
-      }
-
-      req.user = user;
-      next();
-    });
-  } else {
-    res.sendStatus(401);
-  }
-};
-
-app.use(authenticateJWT);
+// app.use(authenticateJWT);
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));

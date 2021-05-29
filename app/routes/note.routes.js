@@ -1,8 +1,10 @@
+var auth = require("../../config/auth-midleware");
+
 module.exports = function (app) {
   var notes = require("../controllers/note.controller.js");
 
   // Create a new Note
-  app.post("/notes", notes.create);
+  app.post("/notes", auth, notes.create);
 
   // Retrieve all Notes
   app.get("/notes", notes.findAll);
