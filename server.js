@@ -1,8 +1,19 @@
 var express = require("express");
+
 var bodyParser = require("body-parser");
 
 // create express app
 var app = express();
+// allow cross origin
+app.use(function (req, res, next) {
+  // shoud be changed to specsific ip server ///
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, jwt"
+  );
+  next();
+});
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
