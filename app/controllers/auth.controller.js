@@ -26,7 +26,10 @@ exports.login = function (req, res) {
           message: "Could not retrieve this user ",
         });
       } else {
-        res.send(data);
+        // check data not null
+        if (data) {
+          res.send(data);
+        }
       }
     }
   );
