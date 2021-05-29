@@ -48,7 +48,7 @@ mongoose.connection.once("open", function () {
 app.get("/", function (req, res) {
   res.json({
     message:
-      "Welcome to EasyNotes application. Take notes quickly. Organize and keep track of all your notes.",
+      "Welcome to GuestBook application. Take messsages quickly. Organize and keep track of all your masseges.",
   });
 });
 
